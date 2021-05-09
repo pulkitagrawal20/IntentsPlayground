@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Intents Playground</string>
+    <string name="dec">-</string>
+    <string name="zero">0</string>
+    <string name="inc">+</string>
+    <string name="my_counter">My Counter</string>
+    <string name="intentsPlayground">Counter App</string>
+</resources>
