@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private void getInitialCount() {
         //Get Data From Intent:
         Bundle bundle=getIntent().getExtras();
+
+        if(bundle==null)
+            return;
+
         qty=bundle.getInt(Constants.INITIAL_COUNT_KEY,0);
         minValue = bundle.getInt(Constants.MIN_VALUE, Integer.MIN_VALUE);
         maxValue=bundle.getInt(Constants.MAX_VALUE,Integer.MAX_VALUE);
