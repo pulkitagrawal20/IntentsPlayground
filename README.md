@@ -1,5 +1,4 @@
 # IntentsPlayground
-
 I have made an Application to do Intent base works:
 
 Download [APK](https://github.com/pulkitagrawal20/IntentsPlayground/releases/download/v1.0/app-debug.apk) from here
