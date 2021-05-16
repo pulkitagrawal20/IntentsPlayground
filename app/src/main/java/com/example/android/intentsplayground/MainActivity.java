@@ -25,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
         setupEventHandlers();
         getInitialCount();
+
+        if (savedInstanceState!=null){
+            qty=savedInstanceState.getInt(Constants.COUNT,0);
+            b.qty.setText(String.valueOf(qty ));
+        }
     }
 
     private void getInitialCount() {
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         maxValue=bundle.getInt(Constants.MAX_VALUE,Integer.MAX_VALUE);
         b.qty.setText(String.valueOf(qty));
 
+        //Restore on saved Instances:
         if(qty !=0){
             b.sendBackButton.setVisibility(View.VISIBLE);
         }

@@ -1,5 +1,6 @@
 package com.example.android.intentsplayground;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,6 +22,8 @@ import java.net.URI;
 public class IntentsPlaygroundActivity extends AppCompatActivity {
     private static final int REQUEST_COUNT = 0;
     ActivityIntentsPlaygroundBinding B;
+    private boolean resultReceived=false;
+    private int finalCount=0;
 
     // Initial setup:
     @Override
@@ -28,16 +32,19 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
 
         setupLayout();
 
+        RestoreDataFromSavedInstances(savedInstanceState);
+
         setupHideError();
     }
 
     // Setup the layout using the root element of the UI:
+
     private void setupLayout() {
         B=ActivityIntentsPlaygroundBinding.inflate(getLayoutInflater());
         setContentView(B.getRoot());
     }
-
     //Text watcher which gives callback when the text in the text fields changes:
+
     private void setupHideError() {
         TextWatcher myTextWatcher=new TextWatcher() {
             @Override
@@ -62,7 +69,6 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
 
 
     //Event Handlers:
-
     public void SendImplicitIntent(View view) {
         String input=B.data.getEditText().getText().toString().trim();
         //Radio Button defined:
@@ -123,13 +129,14 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
 
     //Implicit Intent Sender:
         //share text class:
+
     private void shareText(String text) {
         Intent intent = new Intent(); intent.setAction(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, text);
         startActivity(Intent.createChooser(intent, "Share text via"));
     }
-        //Dial number Class:
+    //Dial number Class:
     private void dialNumber(String number) {
         //Checking Dial Number match:
         if(!number.matches("^\\d{10}$")){
@@ -158,14 +165,35 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
         hideError();
     }
     //Utility Function:
-
     private void hideError(){
         B.data.setError(null);
         B.initialCounterEditText.setError(null);
     }
+
     public void openMainActivity(View view) {
         Intent intent=new Intent(this,MainActivity.class);
         startActivity(intent);
     }
 
+    //To Restore Data:
+    private void RestoreDataFromSavedInstances(Bundle savedInstanceState) {
+        if(savedInstanceState!=null){
+            resultReceived=savedInstanceState.getBoolean("resultReceived",false);
+
+            if(resultReceived){
+                finalCount=savedInstanceState.getInt("finalCount");
+            }
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean("ResultReceived",resultReceived);
+
+        if(resultReceived)
+            outState.putInt("FinalCount",finalCount);
+
+    }
 }
