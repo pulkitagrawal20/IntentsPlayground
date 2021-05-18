@@ -15,7 +15,6 @@ Download [APK](https://github.com/pulkitagrawal20/IntentsPlayground/releases/dow
 >Send and Receive Data.
 
 #Previews of the Application:-
-
 ![00](https://user-images.githubusercontent.com/69674896/117582092-e2130f80-b11d-11eb-9de0-0e953e9dca6d.png)
 ![9309d908-8d06-45f1-a291-2384323c2e5a](https://user-images.githubusercontent.com/69674896/117582098-e808f080-b11d-11eb-88b7-e628d7974ac4.jpg)
 ![02](https://user-images.githubusercontent.com/69674896/117582105-f0f9c200-b11d-11eb-9ca4-eefbcbf128d5.png)
