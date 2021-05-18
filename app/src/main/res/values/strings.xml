@@ -5,4 +5,5 @@
     <string name="inc">+</string>
     <string name="my_counter">My Counter</string>
     <string name="intentsPlayground">Counter App</string>
+    <string name="ResultTextView" />
 </resources>

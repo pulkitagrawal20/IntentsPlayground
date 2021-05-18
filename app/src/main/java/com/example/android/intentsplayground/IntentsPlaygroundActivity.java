@@ -121,10 +121,18 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
         if(requestCode==REQUEST_COUNT && resultCode==RESULT_OK){
             //Get Data:
             int count = data.getIntExtra(Constants.FINAL_VALUE,Integer.MIN_VALUE);
+
+            resultReceived=true;
+            finalCount=count;
+
             //Show Data
-            B.result.setText("Final count received : " +count);
-            B.result.setVisibility(View.VISIBLE);
+            setResultInTextView(count);
         }
+    }
+
+    private void setResultInTextView(int count) {
+        B.result.setText("Final count received : " +count);
+        B.result.setVisibility(View.VISIBLE);
     }
 
     //Implicit Intent Sender:
@@ -178,10 +186,12 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
     //To Restore Data:
     private void RestoreDataFromSavedInstances(Bundle savedInstanceState) {
         if(savedInstanceState!=null){
-            resultReceived=savedInstanceState.getBoolean("resultReceived",false);
+            resultReceived=savedInstanceState.getBoolean("ResultReceived",false);
 
             if(resultReceived){
-                finalCount=savedInstanceState.getInt("finalCount");
+                finalCount=savedInstanceState.getInt("FinalCount");
+
+                setResultInTextView(finalCount);
             }
         }
     }
@@ -194,6 +204,5 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
 
         if(resultReceived)
             outState.putInt("FinalCount",finalCount);
-
     }
 }
